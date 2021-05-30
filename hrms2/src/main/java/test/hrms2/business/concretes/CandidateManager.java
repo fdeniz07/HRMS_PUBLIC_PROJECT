@@ -75,6 +75,7 @@ public class CandidateManager implements CandidateService {
 		}
 
 		else if (isEmailValid(candidate.getEmail())) {
+			
 			candidate.setMailVerify(false);
 			User savedUser = this.userDao.save(candidate);
 

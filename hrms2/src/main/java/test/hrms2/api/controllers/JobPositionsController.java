@@ -2,6 +2,8 @@ package test.hrms2.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +34,7 @@ public class JobPositionsController {
 	}
 	
 	@PostMapping("/add")
-	public Result Add(@RequestBody JobPosition jobPosition){
+	public Result Add(@RequestBody @Valid JobPosition jobPosition){
 		return jobPositionService.add(jobPosition);
 	} 
 	

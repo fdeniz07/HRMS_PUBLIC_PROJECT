@@ -1,5 +1,7 @@
 package test.hrms2.core.validations;
 
+
+
 import test.hrms2.entities.concretes.Employer;
 
 public class EmployerValidator {
@@ -12,10 +14,14 @@ public class EmployerValidator {
 		String[] dizi2 = employer.getWebAddress().split("www.");
 		String domain =dizi2[1];
 
-		if(email==domain) {
+		if(email.equals(domain)) {
+			System.out.println(email + domain);
 			return true;
+			
 		}
-		return false;
+		else {
+		System.out.println(email + domain+"false" );
+		return false;}
 	}
 	
 	

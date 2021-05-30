@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.base.Strings;
 
+import test.hrms2.business.abstracts.ConfirmByEmployeeService;
 import test.hrms2.business.abstracts.EmployerService;
 import test.hrms2.business.abstracts.VerificationCodeService;
 import test.hrms2.core.results.DataResult;
+import test.hrms2.core.results.ErrorDataResult;
 import test.hrms2.core.results.ErrorResult;
 import test.hrms2.core.results.Result;
 import test.hrms2.core.results.SuccessDataResult;
@@ -28,63 +30,74 @@ public class EmployerManager implements EmployerService {
 	private EmployerDao employerDao;
 	private UserDao userDao;
 	private VerificationCodeService verificationCodeService;
-	private ConfirmByEmployee confirmByEmployee;
+
 
 	@Autowired
-	public EmployerManager(EmployerDao employerDao) {
+	public EmployerManager(EmployerDao employerDao,UserDao userDao,
+			VerificationCodeService verificationCodeService) {
 		super();
 		this.employerDao = employerDao;
+		this.userDao = userDao;
+		this.verificationCodeService = verificationCodeService;
+		
 	}
 
 	@Override
-	public DataResult<List<Employer>> getAll() {
+	public DataResult<List<Employer>> findAll() {
 
 		return new SuccessDataResult<List<Employer>>(this.employerDao.findAll(),
 				"Is verenler basarili bir sekilde listelendi");
 	}
 
 	@Override
-	public Result add(Employer employer) {
+	public DataResult<Employer> add(Employer employer) {
 
 		if (Strings.isNullOrEmpty(employer.getCompanyName())) {
-			return new ErrorResult("Lütfen firma isminizi bos gecmeyiniz");
+			return new ErrorDataResult<Employer>("Lütfen firma isminizi bos gecmeyiniz");
 		}
 
 		else if (Strings.isNullOrEmpty(employer.getWebAddress())) {
-			return new ErrorResult("Lütfen web adresinizi bos gecmeyiniz");
+			return new ErrorDataResult<Employer>("Lütfen web adresinizi bos gecmeyiniz");
 		}
 
 		else if (Strings.isNullOrEmpty(employer.getPhoneNumber())) {
-			return new ErrorResult("Lütfen telefon numaranizi bos gecmeyiniz");
+			return new ErrorDataResult<Employer>("Lütfen telefon numaranizi bos gecmeyiniz");
 		}
 
 		else if (Strings.isNullOrEmpty(employer.getEmail())) {
-			return new ErrorResult("Lütfen email adresinizi bos gecmeyiniz");
+			return new ErrorDataResult<Employer>("Lütfen email adresinizi bos gecmeyiniz");
 		}
 
 		else if (Strings.isNullOrEmpty(employer.getPassword()) && employer.getPassword().length() <= 6) {
-			return new ErrorResult("Lütfen sifrenizi 6 karakterden az girmeyiniz");
+			return new ErrorDataResult<Employer>("Lütfen sifrenizi 6 karakterden az girmeyiniz");
 		}
 
 		else if (!EmployerValidator.EmployerDomainCheck(employer)) {
 
-			return new ErrorResult("Domain dogrulamasi yapilamadi");
+			return new ErrorDataResult<Employer>("Domain dogrulamasi yapilamadi");
 		}
 
 		else if (isEmailValid(employer.getEmail())) {
 			
+			/*
+			 * System.out.println(employer.getCompanyName()+" "+employer.getId()+" "+
+			 * employer.getConfirmByEmployees());
+			 */
 			employer.setMailVerify(false);
+			
 			User savedUser = this.userDao.save(employer);
 
 			this.verificationCodeService.createActivationCode(savedUser);
-			this.employerDao.save(employer);
+			ConfirmByEmployee confirmByEmployee = new ConfirmByEmployee();
+					
 			
-			return new SuccessResult(employer.getEmail() + " Adresine doğrulama kodu gönderildi");
+			confirmByEmployee.setConfirm(true);
+			
+			return new SuccessDataResult<Employer>(this.employerDao.save(employer),employer.getEmail() + " Adresine doğrulama kodu gönderildi");
 		} else {
 
-			return new ErrorResult("Kullanıcı bilgileri hatalı");
+			return new ErrorDataResult<Employer>("Kullanıcı bilgileri hatalı");
 		}
-//confirmByEmployee.setConfirm(true);
 
 	}
 

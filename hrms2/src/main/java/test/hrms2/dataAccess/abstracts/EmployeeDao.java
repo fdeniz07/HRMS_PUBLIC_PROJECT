@@ -6,4 +6,5 @@ import test.hrms2.entities.concretes.Employee;
 
 public interface EmployeeDao extends JpaRepository<Employee, Integer>{
 
+	
 }
