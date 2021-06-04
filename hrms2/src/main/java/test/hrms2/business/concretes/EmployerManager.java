@@ -8,15 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.base.Strings;
 
-import test.hrms2.business.abstracts.ConfirmByEmployeeService;
 import test.hrms2.business.abstracts.EmployerService;
 import test.hrms2.business.abstracts.VerificationCodeService;
 import test.hrms2.core.results.DataResult;
 import test.hrms2.core.results.ErrorDataResult;
-import test.hrms2.core.results.ErrorResult;
-import test.hrms2.core.results.Result;
 import test.hrms2.core.results.SuccessDataResult;
-import test.hrms2.core.results.SuccessResult;
 import test.hrms2.core.validations.EmployerValidator;
 import test.hrms2.dataAccess.abstracts.EmployerDao;
 import test.hrms2.dataAccess.abstracts.UserDao;

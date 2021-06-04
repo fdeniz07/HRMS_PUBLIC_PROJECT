@@ -88,18 +88,7 @@ public class CandidateManager implements CandidateService {
 		}
 	}
 
-	/*
-	 * @Override public DataResult<User> getByEmail(String email) { return new
-	 * SuccessDataResult<User>(this.userDao.findByEmail(email), "Listelendi"); //
-	 * User alani Candidate // olarak degistirilecek }
-	 */
 
-	/*
-	 * @Override public DataResult<Candidate> getByIdentifacationNumber(String
-	 * identificationNumber) { return new
-	 * SuccessDataResult<Candidate>(this.candidateDao.findByIdentificationNumber(
-	 * identificationNumber), "Listelendi"); }
-	 */
 
 	@Override
 	public DataResult<List<Candidate>> findAllByEmail(String email) {

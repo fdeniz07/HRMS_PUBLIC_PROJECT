@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c528dbb9-cfdf-46da-be35-8dee6b41764a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/DB/Hrms2DB_29052021_0100" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/Hrms2DB_29052021_0300" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms2/src/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms2/src/main/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms2/src/main/java/test/hrms2/Hrms2Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/hrms2/src/main/java/test/hrms2/Hrms2Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms2/src/main/java/test/hrms2/business/concretes/CandidateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/hrms2/src/main/java/test/hrms2/business/concretes/CandidateManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms2/src/main/java/test/hrms2/business/concretes/EmployerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/hrms2/src/main/java/test/hrms2/business/concretes/EmployerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms2/src/main/resources/static/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms2/src/main/resources/templates/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms2/src/test/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms2/src/test/java/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms2/src/test/java/test/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hrms2/src/test/java/test/hrms2/desktop.ini" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1tJRZSyNYgWS7xnYWLnukhfwTE0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Projects_Intellij_Idea/hrms2" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c528dbb9-cfdf-46da-be35-8dee6b41764a" name="Default Changelist" comment="" />
+      <created>1622485264741</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1622485264741</updated>
+      <workItem from="1622485268426" duration="514000" />
+      <workItem from="1622485796139" duration="37000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

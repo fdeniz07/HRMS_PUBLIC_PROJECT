@@ -12,7 +12,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 
 public class Hrms2Application {
-
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Hrms2Application.class, args);
@@ -24,6 +23,5 @@ public class Hrms2Application {
 				.select()
 				.apis(RequestHandlerSelectors.basePackage("test.hrms2"))
 				.build();
-	}
-	
+	}	
 }
