@@ -30,7 +30,7 @@ public class JobPositionsController {
 	
 	@GetMapping("/getall")
 	public DataResult<List<JobPosition>> getAll(){
-		return jobPositionService.getAll();	
+		return jobPositionService.findAll();	
 	}
 	
 	@PostMapping("/add")
@@ -38,5 +38,14 @@ public class JobPositionsController {
 		return jobPositionService.add(jobPosition);
 	} 
 	
+	@PostMapping("/delete")
+	public Result Delete(@RequestBody @Valid int id){
+		return jobPositionService.delete(id);
+	} 
+	
+	@PostMapping("/update")
+	public Result Update(@RequestBody @Valid JobPosition jobPosition){
+		return jobPositionService.update(jobPosition);
+	} 
 	
 }

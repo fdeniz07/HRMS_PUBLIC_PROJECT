@@ -9,6 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,9 +25,11 @@ import test.hrms2.entities.abstracts.User;
 @Table(name="employees")
 public class Employee extends User{
 
+	@NotBlank(message = "İsim kısmı boş bırakılamaz.")
 	@Column(name = "firstname")
 	private String firstName;
 	
+	@NotBlank(message = "Soyisim kısmı boş bırakılamaz.")
 	@Column(name = "lastname")
 	private String lastName;
 	

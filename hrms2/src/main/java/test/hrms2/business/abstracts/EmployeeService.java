@@ -8,6 +8,14 @@ import test.hrms2.entities.concretes.Employee;
 
 public interface EmployeeService {
 
-	DataResult<List<Employee>> getAll();
+	DataResult<List<Employee>> findAll();
+
 	Result add(Employee employee);
+
+	Result delete(int id);
+
+	Result update(Employee employee);
+
+	DataResult<Employee> findById(int id);
+
 }

@@ -9,6 +9,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,20 +26,21 @@ import test.hrms2.entities.abstracts.User;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="employers")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "employers" })
+
 public class Employer extends User {
 
-	
+	@NotBlank(message = "Şirket ismi boş bırakılamaz. \n")
 	@Column(name = "company_name")
 	private String companyName;
 	
+	@NotBlank(message = "Web adresi boş bırakılamaz. \n")
 	@Column(name = "web_address")
 	private String webAddress;
 	
+	@NotBlank(message = "Telefon bilgisi boş bırakılamaz. \n")
 	@Column(name = "phone_number")
 	private String phoneNumber;
-	
-	@OneToMany(mappedBy = "employer")
-	private List<ConfirmByEmployee> confirmByEmployees;
 	
 	@Column(name = "is_active")
 	private Boolean isActive;
@@ -43,4 +48,12 @@ public class Employer extends User {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "created_date")
 	private Date createdDate;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "employer")
+	private List<ConfirmByEmployee> confirmByEmployees;
+		
+	@JsonIgnore
+	@OneToMany(mappedBy = "employer")
+	private List<JobAdvertisement> jobAdvertisements;
 }

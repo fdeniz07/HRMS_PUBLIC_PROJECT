@@ -4,12 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import test.hrms2.business.abstracts.JobAdvertisementService;
 import test.hrms2.core.results.DataResult;
+import test.hrms2.core.results.Result;
 import test.hrms2.entities.concretes.JobAdvertisement;
 
 @RestController
@@ -24,34 +27,42 @@ public class JobAdvertisementController {
 		this.jobAdvertisementService = jobAdvertisementService;
 	}
 
-	@GetMapping("/getall")
-	public DataResult<List<JobAdvertisement>> getAll() {
-		return jobAdvertisementService.findAll();
+	
+	@PostMapping("/add")
+	public Result add(@RequestBody JobAdvertisement jobAdvertisement) {
+		return jobAdvertisementService.add(jobAdvertisement);
+	}
+	
+	@GetMapping("getallactivated")
+	public DataResult<List<JobAdvertisement>> findByIsActiveTrue() {
+		return this.jobAdvertisementService.findByIsActiveTrue();
+	}
+	
+	@GetMapping("getallactivatedorderbycreateddateasc")
+	public DataResult<List<JobAdvertisement>> findByIsActiveIsTrueOrderByCreatedDateAsc() {
+		return this.jobAdvertisementService.findByIsActiveIsTrueOrderByCreatedDateAsc();
+	}	
+
+	@GetMapping("getallactivatedorderbydeadlineasc")
+	public DataResult<List<JobAdvertisement>> findByIsActiveIsTrueOrderByDeadlineAsc() {
+		return this.jobAdvertisementService.findByIsActiveIsTrueOrderByDeadlineAsc();
+	}		
+	
+	@GetMapping("getallactivatedandemployerid")
+	public DataResult<List<JobAdvertisement>> findByIsActiveIsTrueAndEmployerId(@RequestParam(name = "id") Integer id) {
+		return this.jobAdvertisementService.findByIsActiveIsTrueAndEmployerId(id);
+	}
+	
+	@GetMapping("activatejobadvertisement")
+	public Result activateJobAdvertisement(Integer id) {
+		return this.jobAdvertisementService.activateJobAdvertisement(id);
+	}
+	
+	@GetMapping("deactivatejobadvertisement")
+	public Result deactivateJobAdvertisement(Integer id) {
+		return this.jobAdvertisementService.deactivateJobAdvertisement(id);
 	}
 
-	/*
-	 * @GetMapping("/getByIsActiveAndEmployerId") public
-	 * DataResult<List<JobAdvertisement>>
-	 * getByIsActiveAndEmployer_Id(@RequestParam("isActive") boolean isActive,
-	 * 
-	 * @RequestParam("employerId") int employerId) { return
-	 * jobAdvertisementService.findByIsActiveAndEmployer_Id(isActive, employerId); }
-	 */
-
-	/*
-	 * @GetMapping("/getByIsActiveAndEmployerCompanyName") public
-	 * DataResult<List<JobAdvertisement>>
-	 * findByIsActiveAndEmployer_CompanyNameContainsIgnoreCase(
-	 * 
-	 * @RequestParam("isActive") boolean isActive, @RequestParam("companyName")
-	 * String companyName) { return jobAdvertisementService.
-	 * findByIsActiveAndEmployer_CompanyNameContainsIgnoreCase(isActive,
-	 * companyName); }
-	 */
-
-	@GetMapping("/getByIsActiveIsTrueOrderByCreatedDateAsc")
-	public DataResult<List<JobAdvertisement>> getByIsActiveIsTrueOrderByCreatedDateAsc() {
-		return jobAdvertisementService.findByIsActiveIsTrueOrderByCreatedDateAsc();
-	}
+	
 
 }

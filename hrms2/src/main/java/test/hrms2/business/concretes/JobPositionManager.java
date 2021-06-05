@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import test.hrms2.business.abstracts.JobPositionService;
 import test.hrms2.core.results.DataResult;
+import test.hrms2.core.results.ErrorDataResult;
+import test.hrms2.core.results.ErrorResult;
 import test.hrms2.core.results.Result;
 import test.hrms2.core.results.SuccessDataResult;
 import test.hrms2.core.results.SuccessResult;
@@ -26,21 +28,49 @@ public class JobPositionManager implements JobPositionService{
 	}
 
 	@Override
-	public DataResult<List<JobPosition>> getAll() {
-		return new SuccessDataResult<List<JobPosition>>(this.jobPositionDao.findAll(),
-				"Is pozisyonlari basarili bir sekilde listelendi");
+	public DataResult<List<JobPosition>> findAll() {
+		
+		  return new SuccessDataResult<List<JobPosition>>(this.jobPositionDao.findAll(),
+		  "İş pozisyonları başarılı bir şekilde listelendi");
 	}
 
 	@Override
 	public Result add(JobPosition jobPosition) {
-		jobPositionDao.save(jobPosition);
-		return new SuccessResult("Yeni is pozisyonun basarili bir sekilde eklendi");
+
+		if (this.jobPositionDao.existsJobPositionByPositionIgnoreCase(jobPosition.getPosition())) {
+			return new ErrorResult("Bu isimde bir iş pozisyonu vardır.");
+		} else {
+			this.jobPositionDao.save(jobPosition);
+			return new SuccessResult("Yeni iş pozisyonu başarılı bir şekilde eklendi");
+		}
 	}
 
 	@Override
-	public DataResult<List<JobPosition>> findAllByPosition(String position) {
-		// TODO Auto-generated method stub
-		return null;
+	public DataResult<JobPosition> find(int id) {
+		if (this.jobPositionDao.findById(id).orElse(null) != null ) {
+			return new SuccessDataResult<JobPosition>(
+					this.jobPositionDao.findById(id).get(),"Belirtilen iş pozisyonu başarıyla bulundu.");
+		} else {
+			return new ErrorDataResult<JobPosition>("Belirtilen iş pozisyonu mevcut değildir.");
+		}
+	}
+
+	@Override
+	public Result delete(int id) {
+		this.jobPositionDao.deleteById(id);
+		return new SuccessResult("İş pozisyonu başarıyla silindi.");
+	}
+
+	@Override
+	public Result update(JobPosition jobPosition) {
+		this.jobPositionDao.save(jobPosition);
+		return new SuccessResult("İş pozisyonu başarıyla güncellendi.");
+	}
+
+	@Override
+	public boolean existsJobPositionByPosition(String position) {
+
+		return this.jobPositionDao.existsJobPositionByPositionIgnoreCase(position);
 	}
 
 }

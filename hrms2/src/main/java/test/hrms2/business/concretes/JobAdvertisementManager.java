@@ -9,6 +9,7 @@ import test.hrms2.business.abstracts.JobAdvertisementService;
 import test.hrms2.core.results.DataResult;
 import test.hrms2.core.results.Result;
 import test.hrms2.core.results.SuccessDataResult;
+import test.hrms2.core.results.SuccessResult;
 import test.hrms2.dataAccess.abstracts.JobAdvertisementDao;
 import test.hrms2.entities.concretes.JobAdvertisement;
 
@@ -23,45 +24,61 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		this.jobAdvertisementDao = jobAdvertisementDao;
 	}
 
+	//İSTERLER
+	
 	@Override
-	public DataResult<List<JobAdvertisement>> findAll() {
-
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findAll(),
-				"Tüm is ilanlari listelendi");
+	public Result add(JobAdvertisement jobAdvertisement) {
+		this.jobAdvertisementDao.save(jobAdvertisement);
+		return new SuccessResult("Yeni iş ilanı başarıyla eklendi.");
 	}
 
-	/*
-	 * @Override public DataResult<List<JobAdvertisement>>
-	 * findByIsActiveAndEmployer_Id(boolean isActive, int employerId) {
-	 * 
-	 * return new SuccessDataResult<List<JobAdvertisement>>(
-	 * this.jobAdvertisementDao.findByIsActiveAndEmployer_Id(isActive, employerId),
-	 * "Aktiv is ilanlari listelendi"); }
-	 */
-
-	/*
-	 * @Override public DataResult<List<JobAdvertisement>>
-	 * findByIsActiveAndEmployer_CompanyNameContainsIgnoreCase(boolean isActive,
-	 * String companyName) {
-	 * 
-	 * return new SuccessDataResult<List<JobAdvertisement>>(
-	 * this.jobAdvertisementDao.
-	 * findByIsActiveAndEmployer_CompanyNameContainsIgnoreCase(isActive,
-	 * companyName), "Firma adina göre aktif is ilanlari listelenmistir"); }
-	 */
+	@Override
+	public DataResult<List<JobAdvertisement>> findByIsActiveTrue() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByIsActiveTrue(),"Aktif iş ilanları listelendi.");
+	}
 
 	@Override
 	public DataResult<List<JobAdvertisement>> findByIsActiveIsTrueOrderByCreatedDateAsc() {
-
-		return new SuccessDataResult<List<JobAdvertisement>>(
-				this.jobAdvertisementDao.findByIsActiveIsTrueOrderByCreatedDateAsc(),
-				"Tarihe göre is ilanlari listelendi");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByIsActiveIsTrueOrderByCreatedDateAsc(),"Aktif iş ilanları A'dan Z'ye listelendi.");
 	}
 
 	@Override
-	public Result add(JobAdvertisement jobAdvertisement) {
-
-		return null;
+	public DataResult<List<JobAdvertisement>> findByIsActiveIsTrueOrderByDeadlineAsc() {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByIsActiveIsTrueOrderByDeadlineAsc(),"Aktif iş ilanları gecerlilik süresine göre A'dan Z'ye listelendi.");
 	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> findByIsActiveIsTrueAndEmployerId(Integer id) {
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByIsActiveIsTrueAndEmployerId(id),"Aktif iş ilanları Isverene göre listelendi");
+	}
+
+	@Override
+	public Result activateJobAdvertisement(Integer id) {
+		JobAdvertisement jobAdvertisement = this.jobAdvertisementDao.findById(id).get();
+		jobAdvertisement.setIsActive(true);
+		this.jobAdvertisementDao.save(jobAdvertisement);
+		return new SuccessResult("İş ilanı başarıyla aktif edildi");
+	}
+
+	@Override
+	public Result deactivateJobAdvertisement(Integer id) {
+		JobAdvertisement jobAdvertisement = this.jobAdvertisementDao.findById(id).get();
+		jobAdvertisement.setIsActive(false);
+		this.jobAdvertisementDao.save(jobAdvertisement);
+		return new SuccessResult("İş ilanı başarıyla pasif edildi");
+	}
+
+
+	
+
+
+
+
+	
+	
+	//İSTER DIŞI SORGULAR
+	
+
+
 
 }

@@ -10,8 +10,11 @@ import test.hrms2.entities.concretes.VerificationCode;
 public interface VerificationCodeService {
 
 	VerificationCode findByCode(String code);
+	
 	DataResult<List<VerificationCode>> findAllByCode();
+	
 	String createActivationCode(User user);
+	
 	Result activateUser(String activationCode);
 	
 }

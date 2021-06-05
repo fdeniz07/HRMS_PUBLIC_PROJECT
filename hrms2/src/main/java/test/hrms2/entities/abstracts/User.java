@@ -10,7 +10,10 @@ import javax.persistence.InheritanceType;
 
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,16 +25,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
-//@JsonIgnoreProperties({"hibernateLazyInitializer","handler","verification_codes"})
-public class User {
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","verification_codes"})
+public abstract class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 	
-	@Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+.(com|org|net|edu|gov|mil|biz|info|mobi)(.[A-Z]{2})?$", message = "Email musst be this keyword valid")
-	@Email(message = "Mail Format is invalid")
+	@NotBlank(message = "Email alanı boş bırakılamaz.")
+	@Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+.(com|org|net|edu|gov|mil|biz|info|mobi)(.[A-Z]{2})?$", message = "Lütfen geçerli bir E-posta adresi giriniz.")
+	@Email(message = "EMail formatı geçersiz")
 	@Column(name="email")
 	private String email;
 	

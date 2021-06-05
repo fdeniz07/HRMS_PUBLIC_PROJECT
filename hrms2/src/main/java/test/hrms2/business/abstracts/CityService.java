@@ -3,9 +3,8 @@ package test.hrms2.business.abstracts;
 import java.util.List;
 
 import test.hrms2.core.results.DataResult;
-import test.hrms2.entities.abstracts.User;
+import test.hrms2.entities.concretes.City;
 
-public interface UserService {
-
-	DataResult<List<User>> findAll();
+public interface CityService {
+	DataResult<List<City>> findAll();
 }

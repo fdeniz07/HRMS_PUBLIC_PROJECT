@@ -25,17 +25,15 @@ public class EmployersController {
 		super();
 		this.employerService = employerService;
 	}
-	
-	
-	  @GetMapping("/getall") 
-	  public DataResult<List<Employer>> getAll(){ 
-		  return employerService.findAll(); 
-	  }
-	  
-	  @PostMapping("/add") 
-	  public Result Add(@RequestBody Employer employer){
-	  return employerService.add(employer); 
-	  }	
-	
-	
+
+	@GetMapping("/getall")
+	public DataResult<List<Employer>> getAll() {
+		return employerService.findAll();
+	}
+
+	@PostMapping("/add")
+	public Result Add(@RequestBody Employer employer) {
+		return employerService.add(employer);
+	}
+
 }

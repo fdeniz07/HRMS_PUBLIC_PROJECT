@@ -12,6 +12,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="job_positions")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "job_positions" })
 public class JobPosition {
 
 	@Id
@@ -28,7 +31,7 @@ public class JobPosition {
 	@Column(name = "id")
 	private int id;
 	
-	@NotBlank(message = "Position column isnot valid")
+	@NotBlank(message = "Pozisyon alanı boş geçilemez")
 	@Column(name = "position")
 	private String position;
 	

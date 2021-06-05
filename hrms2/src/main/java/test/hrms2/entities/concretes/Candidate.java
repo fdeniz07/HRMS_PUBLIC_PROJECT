@@ -1,7 +1,5 @@
 package test.hrms2.entities.concretes;
 
-
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -27,14 +25,16 @@ import test.hrms2.entities.abstracts.User;
 @EqualsAndHashCode(callSuper = false)
 public class Candidate extends User {
 
+	@NotBlank(message = "İsim alanı boş bırakılamaz. ")
 	@Column(name = "firstname")
 	private String firstname;
 
+	@NotBlank(message = "Soyisim alanı boş bırakılamaz. ")
 	@Column(name = "lastname")
 	private String lastname;
 
-	@NotBlank(message = "National identity cannot be empty.")
-	@Size(min = 11, max = 11, message = "National identity length must be 11.")
+	@NotBlank(message = "Kimlik numarası alanı boş bırakılamaz. ")
+	@Size(min = 11, max = 11, message = "Kimlik numarası 11 haneli olmalıdır.")
 	@Pattern(regexp = "^[1-9][0-9]{9}[02468]$", message = "National identity can't start with 0 or contain text.")
 	@Column(name = "identification_number")
 	private String identificationNumber;

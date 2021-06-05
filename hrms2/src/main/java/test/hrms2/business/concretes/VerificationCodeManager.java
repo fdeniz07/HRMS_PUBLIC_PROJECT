@@ -1,7 +1,6 @@
 package test.hrms2.business.concretes;
 
 import java.security.SecureRandom;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +62,7 @@ public class VerificationCodeManager implements VerificationCodeService {
 		verificationCode.setVerified(true);
 		verificationCodeDao.save(verificationCode);
 		return new SuccessResult("Kullanici aktivasyonu gerceklesti");
+		
 		//userDao.save(verificationCode);
 		//User user = userDao.getOne(verificationCodeDao.findByCode(activationCode).getId());
 		//user.setMailVerify(true);

@@ -12,6 +12,7 @@ import test.hrms2.business.abstracts.CandidateService;
 import test.hrms2.business.abstracts.MernisDemoService;
 import test.hrms2.business.abstracts.VerificationCodeService;
 import test.hrms2.core.results.DataResult;
+import test.hrms2.core.results.ErrorDataResult;
 import test.hrms2.core.results.ErrorResult;
 import test.hrms2.core.results.Result;
 import test.hrms2.core.results.SuccessDataResult;
@@ -39,6 +40,18 @@ public class CandidateManager implements CandidateService {
 		this.mernisDemoService = mernisDemoService;
 	}
 
+	
+	@Override
+	public DataResult<Candidate> find(int id) {
+		
+		if (this.candidateDao.findById(id).orElse(null) != null ) {
+			return new SuccessDataResult<Candidate>(this.candidateDao.findById(id).get(),
+					"Belirtilen iş arayan başarıyla bulundu.");
+		} else {
+			return new ErrorDataResult<Candidate>("Belirtilen iş arayan mevcut değildir.");
+		}
+	}
+	
 	@Override
 	public DataResult<List<Candidate>> findAll() {
 
@@ -106,5 +119,30 @@ public class CandidateManager implements CandidateService {
 	public boolean isEmailValid(String emailInput) {
 		Pattern pattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
 		return pattern.matcher(emailInput).find();
+	}
+
+
+	@Override
+	public Result delete(int id) {
+		this.candidateDao.deleteById(id);
+		return new SuccessResult("iş arayan başarıyla silindi.");
+	}
+
+	@Override
+	public Result update(Candidate candidate) {
+		this.candidateDao.save(candidate);
+		return new SuccessResult("iş arayan başarıyla güncellendi.");
+	}
+
+	@Override
+	public boolean existsCandidateByIdentificationNumber(String identificationNumber) {
+
+		return this.candidateDao.existsCandidateByIdentificationNumber(identificationNumber);
+	}
+
+	@Override
+	public boolean existsCandidateByEmail(String email) {
+
+		return this.candidateDao.existsCandidateByEmail(email);
 	}
 }

@@ -11,40 +11,42 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import test.hrms2.business.abstracts.CandidateService;
+import test.hrms2.business.abstracts.EmployeeService;
 import test.hrms2.core.results.DataResult;
 import test.hrms2.core.results.Result;
-import test.hrms2.entities.concretes.Candidate;
+import test.hrms2.entities.concretes.Employee;
 
 @RestController
-@RequestMapping("/api/candidates")
-public class CandidatesController {
+@RequestMapping("/api/emplooyes")
+public class EmployeesController {
 
-	CandidateService candidateService;
+	EmployeeService employeeService;
 
 	@Autowired
-	public CandidatesController(CandidateService candidateService) {
+	public EmployeesController(EmployeeService employeeService) {
 		super();
-		this.candidateService = candidateService;
+		this.employeeService = employeeService;
 	}
-
+	
+	
 	@GetMapping("/getall")
-	public DataResult<List<Candidate>> getAll() {
-		return candidateService.findAll();
+	public DataResult<List<Employee>> findAll() {
+		return employeeService.findAll();
 	}
 
 	@PostMapping("/add")
-	public Result Add(@RequestBody Candidate candidate) {
-		return candidateService.add(candidate);
+	public Result Add(@RequestBody Employee employee) {
+		return employeeService.add(employee);
 	}
 
 	@PostMapping("/delete")
 	public Result Delete(@RequestBody @Valid int id) {
-		return candidateService.delete(id);
+		return employeeService.delete(id);
 	}
 
 	@PostMapping("/update")
-	public Result Update(@RequestBody @Valid Candidate candidate) {
-		return candidateService.update(candidate);
+	public Result Update(@RequestBody @Valid Employee employee) {
+		return employeeService.update(employee);
 	}
+	
 }
