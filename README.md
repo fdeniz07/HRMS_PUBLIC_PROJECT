@@ -138,3 +138,20 @@ business poster;
 - Company name, general job position name, number of vacant positions, publication date, and deadline information should be on the list.
 
 ### Request 11: Employers should be able to close a banner in the system. (Passive posting)
+
+### Request 12: Candidates should be able to enter their CV into the system.
+
+- Candidates should be able to add their schools to the system. (School name, department)
+- These schools should be able to enter the years they studied in the system.
+- If he has not graduated, the graduation year should be blank.
+- The schools of the candidates should be in reverse order according to the graduation year. If not graduated, this school should be displayed at the top and as "in progress".
+- Candidates should be able to enter their work experience. (Business name, position)
+- They should be able to enter into the system in which years they had these experiences.
+- If he is still working, the year of leaving the job should be empty.
+- Candidates' experience should be in reverse order by year. If it is still running, this experience should still be displayed at the top and as "in progress".
+- Candidates should be able to enter the foreign languages ​​they know into the system. ( Language, Level -> 1-5)
+- Candidates must be able to enter photos into the system. The photo of the candidate will be kept in the https://cloudinary.com/pricing system. (External service integration) Use the free account.
+- Candidates should be able to enter their github addresses into the system.
+- Candidates should be able to enter their linkedin addresses into the system.
+- Candidates should be able to enter the programming languages ​​or technologies they know into the system. (Programming/Technology name) For example; React
+- Candidates should be able to add a cover letter to the system. (For example: I like working very much....)
