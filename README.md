@@ -155,3 +155,5 @@ business poster;
 - Candidates should be able to enter their linkedin addresses into the system.
 - Candidates should be able to enter the programming languages ​​or technologies they know into the system. (Programming/Technology name) For example; React
 - Candidates should be able to add a cover letter to the system. (For example: I like working very much....)
+
+### Request 13: All CV information of a candidate should be viewable.
