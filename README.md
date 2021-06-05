@@ -15,7 +15,7 @@
 
 ### * SOLID architecture 
 ### * DesignPatterns
-### * NLayered Architecture
+### * N-Tier Architecture
 
 ### * Dependencies:
 - Spring Boot DevTools
@@ -62,7 +62,7 @@ These positions cannot be repeated. The user is warned.
 
 ### DB - SCHEMA
 
-<img src="https://github.com/fdeniz07/HRMS2_Public/blob/master/DB/DB%20Schema.png"/>
+<img src="https://github.com/fdeniz07/HRMS_PUBLIC_PROJECT/blob/master/DB/DB%20Schema.png"/>
 
 ### DB - SCRIPT CODE
 
@@ -106,3 +106,35 @@ These positions cannot be repeated. The user is warned.
 ### Request 5: Job seekers should be able to be listed. (Entire list only)
 
 ### Request 6: Job positions should be able to be listed. (Entire list only)
+
+
+## SECTION 3
+
+#### Important: These requirements are written without any backend-frontend distinction. (As in the industry). You have to code the parts required for the backend.
+
+### Request 7: Employers should add jobs to the system.
+
+business poster;
+- The general job position should be able to be selected from the selectable list (dropdown). (For example Java Developer) (Required)
+- Job description entry should be possible. (For example, we have command of languages ​​such as JAVA, C# etc....)(Required)
+- City information should be automatically selected from the list. (Compulsory)
+- Min-max entry must be possible for the salary scale. (Optional)
+- It should be possible to enter the number of open positions. (Compulsory)
+- The application deadline must be entered.
+
+### Request 8: All active job postings in the system should be listed.
+
+- The list should come in the form of a table.
+- Company name, general job position name, number of vacant positions, publication date, and deadline information should be on the list.
+
+### Request 9: All active job postings in the system should be listed by date.
+
+- The list should come in the form of a table.
+- Company name, general job position name, number of vacant positions, publication date, and deadline information should be on the list.
+
+### Request 10: All active job postings of a company should be listed in the system.
+
+- The list should come in the form of a table.
+- Company name, general job position name, number of vacant positions, publication date, and deadline information should be on the list.
+
+### Request 11: Employers should be able to close a banner in the system. (Passive posting)
