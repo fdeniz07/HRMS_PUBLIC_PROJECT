@@ -1,15 +1,14 @@
 package test.hrms2.entities.concretes;
 
-
-
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,4 +33,10 @@ public class Employee extends User{
 	@OneToMany(mappedBy = "employee")
 	private List<ConfirmByEmployee> confirmByEmployees;
 	
+	@Column(name = "is_active")
+	private Boolean isActive;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created_date")
+	private Date createdDate;
 }

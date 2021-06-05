@@ -1,10 +1,14 @@
 package test.hrms2.entities.concretes;
 
-import java.sql.Date; //sonra degisebilir
+
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -35,7 +39,14 @@ public class Candidate extends User {
 	@Column(name = "identification_number")
 	private String identificationNumber;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name = "birth_date")
 	private Date birthDate;
 
+	@Column(name = "is_active")
+	private Boolean isActive;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created_date")
+	private Date createdDate;
 }
